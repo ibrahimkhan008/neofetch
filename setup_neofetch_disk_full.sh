@@ -1,11 +1,14 @@
 #!/bin/bash
-CONFIG_FILE="$HOME/.config/neofetch/config.conf"
 
 echo "[*] Checking Neofetch..."
-if ! command -v neofetch >/dev/null 2>&1; then
+
+# Try to find neofetch binary
+NEOFETCH_BIN="$(command -v neofetch)"
+
+if [ -z "$NEOFETCH_BIN" ]; then
     echo "[+] Neofetch not found, installing..."
+
     if [ "$EUID" -ne 0 ]; then
-        # Not running as root
         if command -v sudo >/dev/null 2>&1; then
             sudo apt update && sudo apt install -y neofetch
         else
@@ -15,18 +18,31 @@ if ! command -v neofetch >/dev/null 2>&1; then
     else
         apt update && apt install -y neofetch
     fi
+
+    # Re-detect after install
+    NEOFETCH_BIN="$(command -v neofetch)"
+
+    if [ -z "$NEOFETCH_BIN" ]; then
+        echo "[!] Failed to locate neofetch after installation."
+        exit 1
+    fi
+
+    echo "[✓] Installed Neofetch at: $NEOFETCH_BIN"
 else
-    echo "[✓] Neofetch is already installed."
+    echo "[✓] Neofetch found at: $NEOFETCH_BIN"
 fi
+
+# Define config path (based on current user)
+CONFIG_FILE="$HOME/.config/neofetch/config.conf"
 
 # Ensure config file exists
 if [ ! -f "$CONFIG_FILE" ]; then
     echo "[+] Generating default Neofetch config..."
     mkdir -p "$HOME/.config/neofetch"
-    neofetch --config none --generate "$CONFIG_FILE"
+    "$NEOFETCH_BIN" --config none --generate "$CONFIG_FILE"
 fi
 
-# Check if the line exists
+# Modify config safely
 if grep -q '^[#]*\s*info "Disk" disk' "$CONFIG_FILE"; then
     if grep -q '^#.*info "Disk" disk' "$CONFIG_FILE"; then
         echo "[*] Found commented 'info \"Disk\" disk'. Uncommenting..."
@@ -41,4 +57,4 @@ else
     echo "[✓] Line added successfully."
 fi
 
-echo "[✓] All done! Run 'neofetch' to see the changes."
+echo "[✓] All done! Run '$NEOFETCH_BIN' to see the changes."
