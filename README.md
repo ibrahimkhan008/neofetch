@@ -20,6 +20,32 @@ Perfect for anyone who wants Neofetch to show system storage information (total,
 
 ---
 
+# 💡 What this actually does (important)
+
+* Reads `/etc/passwd` → finds **real human users only**
+* Skips system accounts (like daemon, www-data, etc.)
+* Applies config safely per user
+* Fixes permissions (very important 🔐)
+* Updates `/etc/skel` → so **new users automatically get config**
+* Optionally adds neofetch to `.bashrc` (auto-run on login)
+
+---
+
+# ⚠️ Pro tips
+
+* Run this as root for full effect:
+
+```bash
+sudo bash script.sh
+```
+
+* If you *don’t* want auto-run on login, remove this part:
+
+```bash
+echo "$NEOFETCH_BIN" >> "$BASHRC"
+```
+---
+
 ## ⚙️ Features
 
 ✅ Auto-install Neofetch if missing  
