@@ -133,7 +133,9 @@ echo "[✅] Setup complete! Run 'neofetch' to see disk info."
 
 ## Clone the repo:
 
-```git clone https://github.com/ibrahimkhan008/neofetch-disk-display.git```
+```bash
+git clone https://github.com/ibrahimkhan008/neofetch-disk-display.git
+```
 
 
 ## Make the script executable:
