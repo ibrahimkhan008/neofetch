@@ -56,7 +56,7 @@ echo "$NEOFETCH_BIN" >> "$BASHRC"
 
 ---
 
-## 🧰 Script: `setup_neofetch_disk_full.sh`
+## 🧰 Script: `script.sh`
 
 ```bash
 #!/bin/bash
@@ -130,29 +130,34 @@ echo "[✅] Setup complete! Run 'neofetch' to see disk info."
 ## One-line install command
 
 ```bash 
-curl -fsSL https://raw.githubusercontent.com/ibrahimkhan008/neofetch-disk-display/main/script.sh | sudo bash
+curl -fsSL https://raw.githubusercontent.com/ibrahimkhan008/neofetch/main/script.sh | sudo bash
 ```
 
 ## Clone the repo:
 
 ```bash
-git clone https://github.com/ibrahimkhan008/neofetch-disk-display.git
+git clone https://github.com/ibrahimkhan008/neofetch.git
 ```
 
+## Go into dir
+
+```bash
+cd neofetch
+```
 
 ## Make the script executable:
 
-```chmod +x setup_neofetch_disk_full.sh```
+```chmod +x script.sh```
 
 ## Run the setup:
 
-```./setup_neofetch_disk_full.sh```
+```./script.sh```
 
 ## If you get permission errors, try:
 
-```sudo ./setup_neofetch_disk_full.sh```
+```sudo ./script.sh```
 # or
-```su -c './setup_neofetch_disk_full.sh'```
+```su -c './script.sh'```
 
 
 ---
