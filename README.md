@@ -129,7 +129,9 @@ echo "[✅] Setup complete! Run 'neofetch' to see disk info."
 
 ## One-line install command
 
-```bash <(curl -sSL https://raw.githubusercontent.com/ibrahimkhan008/neofetch-disk-display/main/script.sh)```
+```bash 
+curl -fsSL https://raw.githubusercontent.com/ibrahimkhan008/neofetch-disk-display/main/script.sh | sudo bash
+```
 
 ## Clone the repo:
 
